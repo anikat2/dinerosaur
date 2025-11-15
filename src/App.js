@@ -1,17 +1,59 @@
+import { useState } from 'react';
 import './App.css';
-import powerUpsBack from './powerUpsBack';
-import ParentComponent from './parentComponent';
-import AsteroidGame from "./AsteroidGame";
-import Portfolio from "./Portfolio";
-
+import PowerUpsBack from './PowerUpsBack';
+import ParentComponent from './ParentComponent';
+import Portfolio from './Portfolio';
+import Spending from './Spending';
 
 function App() {
+  const [page, setPage] = useState("home");
+
+  // Shared state
+  const [balance, setBalance] = useState(5);
+  const [accessorizeClicked, setAccessorizeClicked] = useState(false);
+  const [dragClicked, setDragClicked] = useState(false);
+  const [icicleClicked, setIcicleClicked] = useState(false);
+  const [timeTravelClicked, setTimeTravelClicked] = useState(false);
+
   return (
     <div className="App">
-     <powerUpsBack />
-     <ParentComponent />
-      <Portfolio />
+      {page === "home" && (
+        <>
+          <ParentComponent 
+            balance={balance}
+            setBalance={setBalance}
+            accessorizeClicked={accessorizeClicked}
+            setAccessorizeClicked={setAccessorizeClicked}
+            dragClicked={dragClicked}
+            setDragClicked={setDragClicked}
+            icicleClicked={icicleClicked}
+            setIcicleClicked={setIcicleClicked}
+            timeTravelClicked={timeTravelClicked}
+            setTimeTravelClicked={setTimeTravelClicked}
+          />
+          <Portfolio balance={balance} />
 
+          <button onClick={() => setPage("spending")}>
+            Go to Spending
+          </button>
+        </>
+      )}
+
+      {page === "spending" && (
+        <Spending
+          setPage={setPage}
+          balance={balance}
+          setBalance={setBalance}
+          accessorizeClicked={accessorizeClicked}
+          setAccessorizeClicked={setAccessorizeClicked}
+          dragClicked={dragClicked}
+          setDragClicked={setDragClicked}
+          icicleClicked={icicleClicked}
+          setIcicleClicked={setIcicleClicked}
+          timeTravelClicked={timeTravelClicked}
+          setTimeTravelClicked={setTimeTravelClicked}
+        />
+      )}
     </div>
   );
 }

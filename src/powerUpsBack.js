@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function powerUpsBack({
+export default function PowerUpsBack({
   balance,
   setBalance,
   accessorizeClicked,
@@ -12,7 +12,6 @@ export default function powerUpsBack({
   timeTravelClicked,
   setTimeTravelClicked,
 }) {
-
   return (
     <div>
       <p>Balance: {balance}</p>
@@ -20,8 +19,10 @@ export default function powerUpsBack({
 
       <button
         onClick={() => {
-          setBalance(prev => prev - 20);
-          setAccessorizeClicked(true);
+          if(balance >= 20) {
+            setBalance(prev => prev - 20);
+            setAccessorizeClicked(true);
+          }
         }}
       >
         Accessorize
@@ -29,8 +30,10 @@ export default function powerUpsBack({
 
       <button
         onClick={() => {
-          setBalance(prev => prev - 150);
-          setDragClicked(true);
+          if(balance >= 150) {
+            setBalance(prev => prev - 150);
+            setDragClicked(true);
+          }
         }}
       >
         Drag
@@ -38,8 +41,10 @@ export default function powerUpsBack({
 
       <button
         onClick={() => {
-          setBalance(prev => prev - 20);
-          setIcicleClicked(true);
+          if(balance >= 20) {
+            setBalance(prev => prev - 20);
+            setIcicleClicked(true);
+          }
         }}
       >
         Icicle
@@ -47,8 +52,10 @@ export default function powerUpsBack({
 
       <button
         onClick={() => {
-          setBalance(prev => prev - 20);
-          setTimeTravelClicked(true);
+          if(balance >= 20) {
+            setBalance(prev => prev - 20);
+            setTimeTravelClicked(true);
+          }
         }}
       >
         Time Travel

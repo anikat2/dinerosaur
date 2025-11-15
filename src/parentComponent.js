@@ -1,14 +1,19 @@
-import React, { useState } from "react";
-import PowerUpsBack from "./powerUpsBack";
+import React from "react";
+import PowerUpsBack from "./PowerUpsBack";
 import AsteroidGame from "./AsteroidGame";
 
-export default function ParentComponent() {
-  const [balance, setBalance] = useState(0);
-  const [accessorizeClicked, setAccessorizeClicked] = useState(false);
-  const [dragClicked, setDragClicked] = useState(false);
-  const [icicleClicked, setIcicleClicked] = useState(false);
-  const [timeTravelClicked, setTimeTravelClicked] = useState(false);
-
+export default function ParentComponent({
+  balance,
+  setBalance,
+  accessorizeClicked,
+  setAccessorizeClicked,
+  dragClicked,
+  setDragClicked,
+  icicleClicked,
+  setIcicleClicked,
+  timeTravelClicked,
+  setTimeTravelClicked
+}) {
   return (
     <div>
       <h1>PowerUps Dashboard</h1>
@@ -26,14 +31,13 @@ export default function ParentComponent() {
         setTimeTravelClicked={setTimeTravelClicked}
       />
 
-<AsteroidGame
-    hatPowerUp={accessorizeClicked}
-    dragPowerUp={dragClicked}
-    iciclePowerUp={icicleClicked}
-    resetDrag={() => setDragClicked(false)}
-    resetIcicle={() => setIcicleClicked(false)}
-/>
-  
-        </div>
+      <AsteroidGame
+        hatPowerUp={accessorizeClicked}
+        dragPowerUp={dragClicked}
+        iciclePowerUp={icicleClicked}
+        resetDrag={() => setDragClicked(false)}
+        resetIcicle={() => setIcicleClicked(false)}
+      />
+    </div>
   );
 }
