@@ -9,14 +9,6 @@ export default function ParentComponent() {
   const [icicleClicked, setIcicleClicked] = useState(false);
   const [timeTravelClicked, setTimeTravelClicked] = useState(false);
 
-  const allState = {
-    balance,
-    accessorizeClicked,
-    dragClicked,
-    icicleClicked,
-    timeTravelClicked,
-  };
-
   return (
     <div>
       <h1>PowerUps Dashboard</h1>
@@ -34,7 +26,14 @@ export default function ParentComponent() {
         setTimeTravelClicked={setTimeTravelClicked}
       />
 
-      <AsteroidGame state={allState} />
-    </div>
+<AsteroidGame
+    hatPowerUp={accessorizeClicked}
+    dragPowerUp={dragClicked}
+    iciclePowerUp={icicleClicked}
+    resetDrag={() => setDragClicked(false)}
+    resetIcicle={() => setIcicleClicked(false)}
+/>
+  
+        </div>
   );
 }

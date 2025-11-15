@@ -3,19 +3,26 @@ import dino from "/Users/rakshanadevalla/dinerosaur/src/assets/dinosaur-cartoon-
 import asteroid from "/Users/rakshanadevalla/dinerosaur/src/assets/pngtree-asteroid-icon-flat-style-png-image_1977257-removebg-preview.png";
 import hat from "/Users/rakshanadevalla/dinerosaur/src/assets/halloweenhatpowerup.png"; 
 
-function AsteroidGame() {
+function AsteroidGame({
+  hatPowerUp,
+  dragPowerUp,
+  iciclePowerUp,
+  resetDrag,
+  resetIcicle
+}) {
+
+
   const containerRef = useRef(null);
 
   const dinoWidth = 150;
   const dinoHeight = 150;
   const asteroidWidth = 120;
   const asteroidHeight = 120;
-  const [hatPowerUp, setHatPowerUp] = useState(false);
 
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const [gameOver, setGameOver] = useState(false);
 
-  // Set initial asteroid position at top-right when component mounts
+  // Set initial asteroid position at top-right
   useEffect(() => {
     const containerWidth = containerRef.current.offsetWidth;
     setPosition({ top: 0, left: containerWidth - asteroidWidth });
@@ -23,26 +30,43 @@ function AsteroidGame() {
 
   const moveAsteroid = () => {
     if (gameOver) return;
-  
-    const horizontalStep = 12; // moves left faster
-    const verticalStep = 5;    // moves down slower → less vertical
-  
+
+    // --- POWER-UP LOGIC -----------------------------------
+
+    // Icicle → freeze for one move, then turn it OFF
+    if (iciclePowerUp) {
+      console.log("Icicle activated → asteroid frozen for this click");
+      resetIcicle();  // turn off after using ONCE
+      return;
+    }
+
+    // Drag → slow movement ONCE
+    const horizontalStep = dragPowerUp ? 6 : 12;
+    const verticalStep = dragPowerUp ? 2 : 5;
+
+    if (dragPowerUp) {
+      console.log("Drag activated → slow asteroid this click");
+      resetDrag(); // RESET after one use
+    }
+
+    // --------------------------------------------------------
+
     setPosition(prev => {
       const newTop = prev.top + verticalStep;
       const newLeft = Math.max(prev.left - horizontalStep, 0);
-  
+
       // Collision detection
       if (
-        newLeft < dinoWidth-80 &&
+        newLeft < dinoWidth - 80 &&
         newTop + asteroidHeight > containerRef.current.offsetHeight - dinoHeight
       ) {
         setGameOver(true);
       }
-  
+
       return { top: newTop, left: newLeft };
     });
-  };
-  
+};
+
 
   return (
     <div style={{ textAlign: "center", marginTop: "40px" }}>
@@ -60,33 +84,31 @@ function AsteroidGame() {
         }}
       >
         {/* Dinosaur */}
+        <img
+          src={dino}
+          alt="dino"
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            width: `${dinoWidth}px`
+          }}
+        />
+
+        {/* Hat */}
+        {hatPowerUp && (
           <img
-            src={dino}
-            alt="dino"
+            src={hat}
+            alt="hat"
             style={{
               position: "absolute",
-              bottom: 0,
-              left: 0,
-              width: `${dinoWidth}px`
+              bottom: dinoHeight - 65,
+              left: 70,
+              width: "50px",
+              zIndex: 2
             }}
           />
-
-          {/* Hat (conditionally rendered) */}
-          {hatPowerUp && (
-            <img
-              src={hat}
-              alt="hat"
-              style={{
-                position: "absolute",
-                bottom: dinoHeight-65, // adjust to position on dino head
-                left: 70,                // adjust to center over dino
-                width: "50px",
-                zIndex: 2
-              }}
-            />
-          )}
-
-        
+        )}
 
         {/* Asteroid */}
         {!gameOver && (
@@ -103,7 +125,7 @@ function AsteroidGame() {
           />
         )}
 
-        {/* Game Over overlay */}
+        {/* Game Over */}
         {gameOver && (
           <div
             style={{
@@ -129,19 +151,13 @@ function AsteroidGame() {
       <button
         onClick={moveAsteroid}
         style={{ marginTop: "20px", padding: "10px 20px", fontSize: "18px" }}
-        disabled={gameOver} // disable button after game over
+        disabled={gameOver}
       >
         Move Asteroid Diagonally
       </button>
-
-      <button onClick={() => setHatPowerUp(!hatPowerUp)}>
-        Toggle Hat Power-Up
-      </button>
-
     </div>
-
-    
   );
 }
+
 
 export default AsteroidGame;
