@@ -1,13 +1,30 @@
-.spending-page {
+/* Wrapper for title + content */
+.spending-page-wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: column;   /* stack title and row */
+  align-items: center;      /* center horizontally */
   margin-top: 20px;
 }
 
+/* Title centered at top */
+.spending-title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Row container for calculator + powerups */
+.spending-page {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 30px;
+}
+
+/* Calculator container */
 .calculator-container {
   position: relative;
-  display: inline-block;
   width: 300px;
   height: 400px;
 }
@@ -20,26 +37,38 @@
 
 .calculator-display {
   position: absolute;
-  top: 20px;   /* position over the image */
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255, 255, 255, 0.8);
   padding: 5px;
   border-radius: 5px;
-  text-align: right;  /* numbers aligned right like a real calculator */
+  text-align: right;
   font-size: 18px;
 }
 
+/* Buttons overlayed on calculator */
 .calc-btn {
-  position: absolute; /* allows the button to sit on top of the image */
-  width: 50px;
-  height: 50px;
-  background: rgba(255, 255, 255, 0.5); /* semi-transparent */
+  position: absolute;
+  width: 46px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.5);
   border: 1px solid #333;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
   text-align: center;
-  line-height: 50px; /* vertically center the text */
+  line-height: 40px;
+}
+
+/* Powerups container */
+.powerups-container {
+  height: 400px;
+}
+
+.powerups-img {
+  width: 100%;
+  height: 100%;
+  display: block;
 }

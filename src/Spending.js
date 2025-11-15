@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import calculatorImg from "./calculator.png"; // your calculator image
-import "./Spending.css"; // the CSS we'll define
+import calculatorImg from "./calculator.png";
+import powerupsImg from "./powerups.png";
+import "./Spending.css";
 
 function Spending() {
   const [input, setInput] = useState("");
@@ -10,7 +11,7 @@ function Spending() {
       setInput("");
     } else if (value === "=") {
       try {
-        setInput(eval(input)); // simple evaluation
+        setInput(eval(input));
       } catch {
         setInput("Error");
       }
@@ -20,38 +21,44 @@ function Spending() {
   };
 
   return (
-    <div className="spending-page">
-      <h1>Spending Page</h1>
+    <div className="spending-page-wrapper">
+      <h1 className="spending-title">Spending Page</h1>
 
-      <div className="calculator-container">
-        <img src={calculatorImg} alt="Calculator" className="calculator-img" />
+      <div className="spending-page">
+        <div className="calculator-container">
+          <img src={calculatorImg} alt="Calculator" className="calculator-img" />
 
-        <div className="calculator-display">
-          <div>{input || "0"}</div>
+          <div className="calculator-display">
+            <div>{input || "0"}</div>
+          </div>
+
+          {/* Calculator Buttons */}
+          <button className="calc-btn" style={{ top: "115px", left: "35px" }} onClick={() => handleClick("1")}>1</button>
+          <button className="calc-btn" style={{ top: "115px", left: "101px" }} onClick={() => handleClick("2")}>2</button>
+          <button className="calc-btn" style={{ top: "115px", left: "166px" }} onClick={() => handleClick("3")}>3</button>
+          <button className="calc-btn" style={{ top: "115px", left: "229px" }} onClick={() => handleClick("+")}>+</button>
+
+          <button className="calc-btn" style={{ top: "165px", left: "35px" }} onClick={() => handleClick("4")}>4</button>
+          <button className="calc-btn" style={{ top: "165px", left: "101px" }} onClick={() => handleClick("5")}>5</button>
+          <button className="calc-btn" style={{ top: "165px", left: "166px" }} onClick={() => handleClick("6")}>6</button>
+          <button className="calc-btn" style={{ top: "165px", left: "229px" }} onClick={() => handleClick("-")}>-</button>
+
+          <button className="calc-btn" style={{ top: "217px", left: "35px" }} onClick={() => handleClick("7")}>7</button>
+          <button className="calc-btn" style={{ top: "217px", left: "101px" }} onClick={() => handleClick("8")}>8</button>
+          <button className="calc-btn" style={{ top: "217px", left: "166px" }} onClick={() => handleClick("9")}>9</button>
+          <button className="calc-btn" style={{ top: "217px", left: "229px" }} onClick={() => handleClick("*")}>*</button>
+
+          <button className="calc-btn" style={{ top: "274px", left: "35px" }} onClick={() => handleClick("0")}>0</button>
+          <button className="calc-btn" style={{ top: "274px", left: "101px" }} onClick={() => handleClick(".")}>.</button>
+          <button className="calc-btn" style={{ top: "274px", left: "166px" }} onClick={() => handleClick("=")}>=</button>
+          <button className="calc-btn" style={{ top: "274px", left: "229px" }} onClick={() => handleClick("/")}>/</button>
+
+          <button className="calc-btn" style={{ top: "328px", left: "35px", width: "176px", height: "46px"}} onClick={() => handleClick("C")}>C</button>
         </div>
 
-        {/* Example button positions */}
-        <button className="calc-btn" style={{ top: "100px", left: "30px" }} onClick={() => handleClick("1")}>1</button>
-        <button className="calc-btn" style={{ top: "100px", left: "90px" }} onClick={() => handleClick("2")}>2</button>
-        <button className="calc-btn" style={{ top: "100px", left: "150px" }} onClick={() => handleClick("3")}>3</button>
-        <button className="calc-btn" style={{ top: "100px", left: "210px" }} onClick={() => handleClick("+")}>+</button>
-
-        <button className="calc-btn" style={{ top: "160px", left: "30px" }} onClick={() => handleClick("4")}>4</button>
-        <button className="calc-btn" style={{ top: "160px", left: "90px" }} onClick={() => handleClick("5")}>5</button>
-        <button className="calc-btn" style={{ top: "160px", left: "150px" }} onClick={() => handleClick("6")}>6</button>
-        <button className="calc-btn" style={{ top: "160px", left: "210px" }} onClick={() => handleClick("-")}>-</button>
-
-        <button className="calc-btn" style={{ top: "220px", left: "30px" }} onClick={() => handleClick("7")}>7</button>
-        <button className="calc-btn" style={{ top: "220px", left: "90px" }} onClick={() => handleClick("8")}>8</button>
-        <button className="calc-btn" style={{ top: "220px", left: "150px" }} onClick={() => handleClick("9")}>9</button>
-        <button className="calc-btn" style={{ top: "220px", left: "210px" }} onClick={() => handleClick("*")}>*</button>
-
-        <button className="calc-btn" style={{ top: "280px", left: "30px" }} onClick={() => handleClick("0")}>0</button>
-        <button className="calc-btn" style={{ top: "280px", left: "90px" }} onClick={() => handleClick(".")}>.</button>
-        <button className="calc-btn" style={{ top: "280px", left: "150px" }} onClick={() => handleClick("=")}>=</button>
-        <button className="calc-btn" style={{ top: "280px", left: "210px" }} onClick={() => handleClick("/")}>/</button>
-
-        <button className="calc-btn" style={{ top: "340px", left: "30px", width: "190px" }} onClick={() => handleClick("C")}>C</button>
+        <div className="powerups-container">
+          <img src={powerupsImg} alt="Powerups" className="powerups-img" />
+        </div>
       </div>
     </div>
   );
