@@ -34,6 +34,34 @@ function Spending({
     }
   };
 
+  const accessorize = () => {
+    if (balance >= 20) {
+      setBalance(prev => prev - 20);
+      setAccessorizeClicked(true);
+    }
+  };
+
+  const drag = () => {
+    if(balance >= 150) {
+      setBalance(prev => prev - 150);
+      setDragClicked(true);
+    }
+  };
+
+  const icicle = () => {
+    if(balance >= 20) {
+      setBalance(prev => prev - 20);
+      setIcicleClicked(true);
+    }
+  };
+
+  const timetravel = () => {
+    if(balance >= 20) {
+      setBalance(prev => prev - 20);
+      setTimeTravelClicked(true);
+    }
+  };
+
   return (
     <div className="spending-page-wrapper">
       <h1 className="spending-title">Spending / Power-Ups Page</h1>
@@ -90,20 +118,23 @@ function Spending({
           {/* Hotspots — positioned by CSS */}
           <button
             className="purchase-hotspot accessorize-btn"
-            onClick={() => setAccessorizeClicked(true)}
-            disabled={accessorizeClicked}
+            onClick={accessorize}
+            disabled={accessorizeClicked || balance < 20}
           />
           <button
             className="purchase-hotspot drag-btn"
-            onClick={() => setDragClicked(!dragClicked)}
+            onClick={drag}
+            disabled={balance < 150}
           />
           <button
             className="purchase-hotspot icicle-btn"
-            onClick={() => setIcicleClicked(!icicleClicked)}
+            onClick={icicle}
+            disabled={balance < 300}
           />
           <button
             className="purchase-hotspot timetravel-btn"
-            onClick={() => setTimeTravelClicked(!timeTravelClicked)}
+            onClick={timetravel}
+            disabled={balance < 1000}
           />
         </div>
 
