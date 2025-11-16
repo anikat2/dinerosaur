@@ -1,9 +1,15 @@
+import TempEr from "./TempEr";
+
 import { useState } from 'react';
 import './App.css';
 import PowerUpsBack from './PowerUpsBack';
-import ParentComponent from './ParentComponent';
 import Portfolio from './Portfolio';
 import Spending from './Spending';
+import Navbar from "./Navbar";
+import AsteroidGame from './AsteroidGame';
+import ParentComponent from "./ParentComponent";
+
+
 
 function App() {
   const [page, setPage] = useState("home");
@@ -41,6 +47,33 @@ function App() {
           </button>
         </>
       )}
+  
+
+  return (
+    <div className="App">
+    <Navbar setPage={setPage} />
+
+    {page === "home" && (
+  <>
+    <div style={{ position: "absolute", top: 10, right: 10, fontSize: "18px" }}>
+      Balance: ${balance}
+    </div>
+
+    <AsteroidGame
+      hatPowerUp={accessorizeClicked}
+      dragPowerUp={dragClicked}
+      iciclePowerUp={icicleClicked}
+      resetDrag={() => setDragClicked(false)}
+      resetIcicle={() => setIcicleClicked(false)}
+    />
+  </>
+)}
+
+
+
+
+
+
 
       {page === "spending" && (
         <Spending
@@ -57,6 +90,7 @@ function App() {
           setTimeTravelClicked={setTimeTravelClicked}
         />
       )}
+      
     </div>
   );
 }
