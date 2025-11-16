@@ -1,114 +1,91 @@
-/* ================================
-   PAGE LAYOUT
-================================ */
-
-.spending-page-wrapper {
+/* --- WRAPPER --- */
+.spending-wrapper {
   text-align: center;
   padding: 20px;
+  font-family: "Georgia", serif;
 }
 
-.spending-page {
-  display: flex;
-  justify-content: center;
-  gap: 60px;
-  flex-wrap: wrap;
+.spending-title {
+  margin-bottom: 20px;
 }
 
-
-/* ================================
-   CALCULATOR
-================================ */
-
-.calculator-container {
-  position: relative;
-  width: 320px;
+.back-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-bottom: 25px;
+  background: #eee;
+  border: 1px solid #aaa;
+  cursor: pointer;
 }
 
-.calculator-img {
-  width: 100%;
-  display: block;
+/* --- CARD LAYOUT --- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  max-width: 750px;
+  margin: 0 auto;
 }
 
-/* Display */
-.calculator-display {
-  position: absolute;
-  top: 35px;
-  left: 30px;
-  width: 260px;
-  height: 60px;
-  background: #ddd;
+/* --- CARD --- */
+.card {
+  background: #f8c7e0; /* pink */
+  padding: 25px;
+  border-radius: 25px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  text-align: left;
+}
+
+/* --- TITLE --- */
+.card .title {
   font-size: 32px;
+  font-weight: 600;
+  color: #301500;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding-right: 10px;
-  border-radius: 4px;
+  gap: 10px;
 }
 
-/* Calculator Buttons */
-.calc-btn {
-  position: absolute;
-  width: 55px;
-  height: 45px;
-  background: #9bb3a8;
+/* --- SUBTITLE --- */
+.card .subtitle {
+  margin-top: 5px;
+  font-size: 16px;
+  font-style: italic;
+  color: #3a2a24;
+}
+
+/* --- BUTTON ROW --- */
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+}
+
+/* --- PRICE BUTTON --- */
+.price {
+  background: #d9e4c6; /* pale green */
+  border: none;
+  padding: 10px 22px;
   border-radius: 6px;
-  border: none;
-  cursor: pointer;
   font-size: 18px;
+  color: #2f3a1f;
 }
 
-
-/* ================================
-   POWER-UPS (one screenshot)
-================================ */
-
-.powerups-container {
-  position: relative;
-  width: 380px;  /* adjust depending on desired size */
-  max-width: 90vw;
-}
-
-.powerups-img {
-  width: 100%;
-  display: block;
-}
-
-/* Invisible hotspot buttons */
-.purchase-hotspot {
-  position: absolute;
-  width: 32%;     /* width of purchase button relative to screenshot */
-  height: 9%;     /* height of purchase button */
-  background: rgba(255, 0, 0, 0.4);
+/* --- PURCHASE BUTTON --- */
+.purchase {
+  background: #2e481f; /* dark forest green */
+  color: white;
   border: none;
+  padding: 10px 26px;
+  border-radius: 6px;
+  font-size: 18px;
   cursor: pointer;
-  z-index: 2;
 }
 
-
-/* ================================
-   HOTSPOT POSITIONS — TUNE THESE
-================================ */
-
-/* Accessorize (top-left pink card) */
-.accessorize-btn {
-  top: 24%;      /* % from top of screenshot */
-  left: 13%;     /* % from left */
+.purchase:hover {
+  background: #213615;
 }
 
-/* Drag (top-right pink card) */
-.drag-btn {
-  top: 24%;
-  left: 62%;
-}
-
-/* Icicle (bottom-left card) */
-.icicle-btn {
-  top: 63%;
-  left: 13%;
-}
-
-/* Time Travel (bottom-right card) */
-.time-btn {
-  top: 63%;
-  left: 62%;
+.purchase:disabled {
+  background: #9da399;
 }

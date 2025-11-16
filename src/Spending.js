@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import calculatorImg from "./assets/calculator.png";
-import powerupsImg from "./assets/powerups.png";   // one screenshot image
+import React from "react";
 import "./Spending.css";
 
-function Spending({
+function Spending({ 
   setPage,
   balance,
   setBalance,
@@ -16,21 +14,11 @@ function Spending({
   timeTravelClicked,
   setTimeTravelClicked
 }) {
-  const [input, setInput] = useState("");
 
-  const handleClick = (value) => {
-    if (value === "C") {
-      setInput("");
-    } else if (value === "=") {
-      try {
-        const result = eval(input);
-        setInput(result);
-        setBalance(Number(result));
-      } catch {
-        setInput("Error");
-      }
-    } else {
-      setInput(input + value);
+  const buy = (cost, action) => {
+    if (balance >= cost) {
+      setBalance((prev) => prev - cost);
+      action();
     }
   };
 
@@ -63,79 +51,72 @@ function Spending({
   };
 
   return (
-    <div className="spending-page-wrapper">
-      <h1 className="spending-title">Spending / Power-Ups Page</h1>
+    <div className="spending-wrapper">
+      <h1 className="spending-title">Spending / Power-Ups</h1>
 
       <button
         onClick={() => setPage("home")}
-        style={{
-          marginBottom: "20px",
-          padding: "10px 20px",
-          fontSize: "16px"
-        }}
+        className="back-btn"
       >
         Back to Home
       </button>
 
-      <div className="spending-page">
-
-        {/* ============= CALCULATOR ============= */}
-        <div className="calculator-container">
-          <img src={calculatorImg} alt="Calculator" className="calculator-img" />
-
-          <div className="calculator-display">
-            <div>{input || "0"}</div>
+      <div className="cards">
+        
+        {/* Accessorize */}
+        <div className="card">
+          <div className="title">🎀 accessorize</div>
+          <div className="subtitle">add a cute hat accessory!</div>
+          <div className="buttons">
+            <button className="price">$20</button>
+            <button className="purchase"
+              onClick={accessorize}
+              disabled={accessorizeClicked || balance < 20}>purchase</button>
           </div>
-
-          {/* Calculator Buttons */}
-          <button className="calc-btn" style={{ top: "115px", left: "35px" }} onClick={() => handleClick("1")}>1</button>
-          <button className="calc-btn" style={{ top: "115px", left: "101px" }} onClick={() => handleClick("2")}>2</button>
-          <button className="calc-btn" style={{ top: "115px", left: "166px" }} onClick={() => handleClick("3")}>3</button>
-          <button className="calc-btn" style={{ top: "115px", left: "229px" }} onClick={() => handleClick("+")}>+</button>
-
-          <button className="calc-btn" style={{ top: "165px", left: "35px" }} onClick={() => handleClick("4")}>4</button>
-          <button className="calc-btn" style={{ top: "165px", left: "101px" }} onClick={() => handleClick("5")}>5</button>
-          <button className="calc-btn" style={{ top: "165px", left: "166px" }} onClick={() => handleClick("6")}>6</button>
-          <button className="calc-btn" style={{ top: "165px", left: "229px" }} onClick={() => handleClick("-")}>-</button>
-
-          <button className="calc-btn" style={{ top: "217px", left: "35px" }} onClick={() => handleClick("7")}>7</button>
-          <button className="calc-btn" style={{ top: "217px", left: "101px" }} onClick={() => handleClick("8")}>8</button>
-          <button className="calc-btn" style={{ top: "217px", left: "166px" }} onClick={() => handleClick("9")}>9</button>
-          <button className="calc-btn" style={{ top: "217px", left: "229px" }} onClick={() => handleClick("*")}>*</button>
-
-          <button className="calc-btn" style={{ top: "274px", left: "35px" }} onClick={() => handleClick("0")}>0</button>
-          <button className="calc-btn" style={{ top: "274px", left: "101px" }} onClick={() => handleClick(".")}>.</button>
-          <button className="calc-btn" style={{ top: "274px", left: "166px" }} onClick={() => handleClick("=")}>=</button>
-          <button className="calc-btn" style={{ top: "274px", left: "229px" }} onClick={() => handleClick("/")}>/</button>
-
-          <button className="calc-btn" style={{ top: "328px", left: "35px", width: "176px", height: "46px"}} onClick={() => handleClick("C")}>C</button>
         </div>
 
-        {/* ============= POWER-UPS ============= */}
-        <div className="powerups-container">
-          <img src={powerupsImg} alt="Power-ups" className="powerups-img" />
+        {/* Drag */}
+        <div className="card">
+          <div className="title">🐢 drag</div>
+          <div className="subtitle">slow down asteroid x2 for one day</div>
+          <div className="buttons">
+            <button className="price">$150</button>
+            <button className="purchase"
+              onClick={drag}
+              disabled={balance < 150}>purchase</button>
+          </div>
+        </div>
 
-          {/* Hotspots — positioned by CSS */}
-          <button
-            className="purchase-hotspot accessorize-btn"
-            onClick={accessorize}
-            disabled={accessorizeClicked || balance < 20}
-          />
-          <button
-            className="purchase-hotspot drag-btn"
-            onClick={drag}
-            disabled={balance < 150}
-          />
-          <button
-            className="purchase-hotspot icicle-btn"
-            onClick={icicle}
-            disabled={balance < 300}
-          />
-          <button
-            className="purchase-hotspot timetravel-btn"
-            onClick={timetravel}
-            disabled={balance < 1000}
-          />
+        {/* Icicle */}
+        <div className="card">
+          <div className="title">🧊 icicle</div>
+          <div className="subtitle">freeze the asteroid for 1 day</div>
+          <div className="buttons">
+            <button className="price">$300</button>
+            <button className="purchase"
+              onClick={icicle}
+              disabled={balance < 300}>purchase</button>
+          </div>
+        </div>
+
+        {/* Time Travel */}
+        <div className="card">
+          <div className="title">⏰ time travel</div>
+          <div className="subtitle">see predictive models to aid investment decisions</div>
+          <div className="buttons">
+            <button className="price">$1000</button>
+            <button className="purchase"
+              onClick={timetravel}
+              disabled={balance < 1000}>purchase</button>
+          </div>
+          <br />
+          <p>Ticker:
+          <input
+            type="text"
+            className="tt-input"
+            style={{ marginLeft: "10px" }}
+            placeholder="enter something..."
+          /></p>
         </div>
 
       </div>
