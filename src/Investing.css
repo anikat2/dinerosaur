@@ -1,0 +1,28 @@
+.table-container {
+  height: 600px;
+  overflow-y: auto;
+  width: 45%; /* increased width */
+}
+
+.ticker-information {
+  height: 300px;
+  overflow-y: auto;
+  width: 100%; /* take full width of right-side container */
+}
+
+.both-tables-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 30px;
+}
+
+.right-side {
+  display: flex;
+  flex-direction: column; /* stacks ticker table + buy stock */
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 45%; /* make right side wider */
+}
