@@ -3,33 +3,29 @@ import './App.css';
 import AsteroidGame from "./AsteroidGame";
 import Spending from './Spending';
 import TempEr from './TempEr';
+import NavBar from './NavBar';
 
 function App() {
   const [page, setPage] = useState("home");
-
-  // SINGLE shared balance for BOTH portfolio and game spending
   const [balance, setBalance] = useState(50);
-  
-  // Power-up states
   const [accessorizeClicked, setAccessorizeClicked] = useState(false);
   const [dragClicked, setDragClicked] = useState(false);
   const [icicleClicked, setIcicleClicked] = useState(false);
   const [timeTravelClicked, setTimeTravelClicked] = useState(false);
-  
-  // Game state
   const [asteroidPosition, setAsteroidPosition] = useState({ top: 0, left: 0 });
   const [triggerAsteroidMove, setTriggerAsteroidMove] = useState(0);
 
-  // Function to trigger asteroid movement from TempEr
   const handleNegativeChange = () => {
     setTriggerAsteroidMove(prev => prev + 1);
   };
 
   return (
     <div className="App">
+      <NavBar page={page} setPage={setPage} />
       {page === "home" && (
         <>
           {/* Portfolio Graph Section - uses same balance */}
+          
           <TempEr 
             balance={balance} 
             setBalance={setBalance}

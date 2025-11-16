@@ -136,15 +136,23 @@ export default function TempEr({ balance, setBalance, onNegativeChange }) {
         )}
       </h1>
       
-      {portfolioData.length > 0 ? (
-        <div style={{ width: '80%', maxWidth: '800px', margin: '20px auto', height: '300px' }}>
-          <Line data={data} options={options} />
+    {portfolioData.length > 0 ? (
+        <div style={{ 
+            width: '80%', 
+            maxWidth: '800px', 
+            margin: '2% auto', 
+            height: '300px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+        }}>
+            <Line data={data} options={options} />
         </div>
-      ) : (
-        <p style={{ textAlign: "center", color: "#666", margin: "20px 0" }}>
-          Click "Next Day" to start tracking your portfolio
+        ) : (
+        <p style={{ textAlign: "center", color: "#666", margin: "2% 0" }}>
+            Click "Next Day" to start tracking your portfolio
         </p>
-      )}
+    )}
 
       <div style={{ textAlign: "center", marginTop: "20px" }}>
         <button

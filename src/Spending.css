@@ -1,36 +1,27 @@
 /* --- WRAPPER --- */
 .spending-wrapper {
   text-align: center;
-  padding: 20px;
+  padding: 2%;
   font-family: "Georgia", serif;
 }
 
 .spending-title {
-  margin-bottom: 20px;
-}
-
-.back-btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  margin-bottom: 25px;
-  background: #eee;
-  border: 1px solid #aaa;
-  cursor: pointer;
+  margin-bottom: 2%;
 }
 
 /* --- CARD LAYOUT --- */
 .cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
-  max-width: 750px;
+  gap: 2.5%;
+  max-width: 75%;
   margin: 0 auto;
 }
 
 /* --- CARD --- */
 .card {
   background: #f8c7e0; /* pink */
-  padding: 25px;
+  padding: 2.5%;
   border-radius: 25px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   text-align: left;
@@ -38,36 +29,36 @@
 
 /* --- TITLE --- */
 .card .title {
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 600;
   color: #301500;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 1%;
 }
 
 /* --- SUBTITLE --- */
 .card .subtitle {
-  margin-top: 5px;
-  font-size: 16px;
+  margin-top: 0.5%;
+  font-size: 1rem;
   font-style: italic;
   color: #3a2a24;
 }
 
 /* --- BUTTON ROW --- */
 .buttons {
-  margin-top: 20px;
+  margin-top: 2%;
   display: flex;
-  gap: 12px;
+  gap: 1.2%;
 }
 
 /* --- PRICE BUTTON --- */
 .price {
   background: #d9e4c6; /* pale green */
   border: none;
-  padding: 10px 22px;
+  padding: 1% 2.2%;
   border-radius: 6px;
-  font-size: 18px;
+  font-size: 1.125rem;
   color: #2f3a1f;
 }
 
@@ -76,9 +67,9 @@
   background: #2e481f; /* dark forest green */
   color: white;
   border: none;
-  padding: 10px 26px;
+  padding: 1% 2.6%;
   border-radius: 6px;
-  font-size: 18px;
+  font-size: 1.125rem;
   cursor: pointer;
 }
 
@@ -92,13 +83,13 @@
 
 .balance-box {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 16%;
+  right: 2%;
 
   background: #d9e4c6;      /* light green */
-  padding: 12px 20px;
+  padding: 1.2% 2%;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: bold;
   color: #2f3a1f;
   font-family: "Georgia", serif;

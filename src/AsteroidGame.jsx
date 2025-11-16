@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import dino from "./assets/dinosaur-cartoon-dinosaur-cute-dinosaur-dinosaur-clipart-cat-dog-meter-snout-png-clipart-removebg-preview.png";
-import asteroid from "./assets/pngtree-asteroid-icon-flat-style-png-image_1977257-removebg-preview.png";
-import hat from "./assets/halloweenhatpowerup.png"; 
+import dino from "./assets/dino.png";
+import asteroid from "./assets/asteroid.png";
+import hat from "./assets/halloweenhatpowerup.png";
+import earth from "./assets/earth.png";
 
 function AsteroidGame({
   hatPowerUp,
@@ -80,29 +81,44 @@ function AsteroidGame({
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "40px" }}>
+    <div style={{ textAlign: "center", marginTop: "5vh" }}>
       <h1>Save the Dino! 🦖☄️</h1>
 
       <div
         ref={containerRef}
         style={{
           position: "relative",
-          width: "400px",
-          height: "250px",
+          width: "60vw",
+          height: "50vh",
           margin: "0 auto",
           border: "1px solid #ccc",
           overflow: "hidden"
         }}
       >
-        {/* Dinosaur */}
+        {/* Earth - positioned in bottom left */}
+        <img
+          src={earth}
+          alt="earth"
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            width: "28%",
+            height: "44%",
+            zIndex: 1
+          }}
+        />
+
+        {/* Dinosaur - on top of earth in bottom left */}
         <img
           src={dino}
           alt="dino"
           style={{
             position: "absolute",
-            bottom: 0,
-            left: 0,
-            width: `${dinoWidth}px`
+            bottom: "40%",  // Positioned on top of the earth
+            left: "6%",     // Centered on the earth
+            width: `${dinoWidth}px`,
+            zIndex: 2
           }}
         />
 
@@ -113,10 +129,10 @@ function AsteroidGame({
             alt="hat"
             style={{
               position: "absolute",
-              bottom: dinoHeight - 65,
-              left: 70,
+              bottom: "calc(40% + 85px)",  // Adjusted for new dino position
+              left: "calc(6% + 70px)",  // Adjusted for new dino position
               width: "50px",
-              zIndex: 2
+              zIndex: 3
             }}
           />
         )}
@@ -131,7 +147,8 @@ function AsteroidGame({
               top: `${asteroidPosition.top}px`,
               left: `${asteroidPosition.left}px`,
               width: `${asteroidWidth}px`,
-              transition: "top 0.2s ease, left 0.2s ease"
+              transition: "top 0.2s ease, left 0.2s ease",
+              zIndex: 2
             }}
           />
         )}
@@ -150,8 +167,9 @@ function AsteroidGame({
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              fontSize: "32px",
-              fontWeight: "bold"
+              fontSize: "2rem",
+              fontWeight: "bold",
+              zIndex: 10
             }}
           >
             💥 Game Over! 💥
@@ -161,7 +179,7 @@ function AsteroidGame({
 
       <button
         onClick={moveAsteroid}
-        style={{ marginTop: "20px", padding: "10px 20px", fontSize: "18px" }}
+        style={{ marginTop: "2vh", padding: "1vh 2vw", fontSize: "1.1rem" }}
         disabled={gameOver}
       >
         Move Asteroid Diagonally

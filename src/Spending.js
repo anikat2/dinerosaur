@@ -54,12 +54,9 @@ function Spending({
     <div className="spending-wrapper">
       <h1 className="spending-title">Spending / Power-Ups</h1>
 
-      <button
-        onClick={() => setPage("home")}
-        className="back-btn"
-      >
-        Back to Home
-      </button>
+      <br></br>
+      <br></br>
+      <br></br>
 
       <div className="balance-box">
         Balance: ${balance}
@@ -109,7 +106,7 @@ function Spending({
           <div className="subtitle">see predictive models to aid investment decisions</div>
           <div className="buttons">
             <button className="price">$1000</button>
-            <button className="purchase"
+            <button className="purchase" 
               onClick={timetravel}
               disabled={balance < 1000}>purchase</button>
           </div>
