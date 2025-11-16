@@ -61,6 +61,10 @@ function Spending({
         Back to Home
       </button>
 
+      <div className="balance-box">
+        Balance: ${balance}
+      </div>
+
       <div className="cards">
         
         {/* Accessorize */}

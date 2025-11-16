@@ -89,3 +89,18 @@
 .purchase:disabled {
   background: #9da399;
 }
+
+.balance-box {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  background: #d9e4c6;      /* light green */
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #2f3a1f;
+  font-family: "Georgia", serif;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
