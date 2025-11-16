@@ -10,11 +10,9 @@ function AsteroidGame({
   resetDrag,
   resetIcicle,
   asteroidPosition,
-  setAsteroidPosition
-  
+  setAsteroidPosition,
+  triggerMove
 }) {
-
-
   const containerRef = useRef(null);
 
   const dinoWidth = 150;
@@ -22,17 +20,8 @@ function AsteroidGame({
   const asteroidWidth = 120;
   const asteroidHeight = 120;
 
-  const position = asteroidPosition;
-  const setPosition = setAsteroidPosition;
   const [gameOver, setGameOver] = useState(false);
 
-/*
-  // Set initial asteroid position at top-right
-  useEffect(() => {
-    const containerWidth = containerRef.current.offsetWidth;
-    setPosition({ top: 0, left: containerWidth - asteroidWidth });
-  }, []);
-*/
   useEffect(() => {
     if (!containerRef.current) return;
     const containerWidth = containerRef.current.offsetWidth;
@@ -40,9 +29,16 @@ function AsteroidGame({
       (asteroidPosition == null) ||
       (asteroidPosition.top === 0 && asteroidPosition.left === 0)
     ) {
-      setPosition({ top: 0, left: containerWidth - asteroidWidth });
+      setAsteroidPosition({ top: 0, left: containerWidth - asteroidWidth });
     }
   }, []);
+
+  // Listen for external trigger to move asteroid
+  useEffect(() => {
+    if (triggerMove) {
+      moveAsteroid();
+    }
+  }, [triggerMove]);
 
   const moveAsteroid = () => {
     if (gameOver) return;
@@ -67,7 +63,7 @@ function AsteroidGame({
 
     // --------------------------------------------------------
 
-    setPosition(prev => {
+    setAsteroidPosition(prev => {
       const newTop = prev.top + verticalStep;
       const newLeft = Math.max(prev.left - horizontalStep, 0);
 
@@ -81,8 +77,7 @@ function AsteroidGame({
 
       return { top: newTop, left: newLeft };
     });
-};
-
+  };
 
   return (
     <div style={{ textAlign: "center", marginTop: "40px" }}>
@@ -133,8 +128,8 @@ function AsteroidGame({
             alt="asteroid"
             style={{
               position: "absolute",
-              top: `${position.top}px`,
-              left: `${position.left}px`,
+              top: `${asteroidPosition.top}px`,
+              left: `${asteroidPosition.left}px`,
               width: `${asteroidWidth}px`,
               transition: "top 0.2s ease, left 0.2s ease"
             }}
@@ -174,6 +169,5 @@ function AsteroidGame({
     </div>
   );
 }
-
 
 export default AsteroidGame;
