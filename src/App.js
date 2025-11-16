@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import './App.css';
-import PowerUpsBack from './PowerUpsBack';
-import ParentComponent from './ParentComponent';
 import Portfolio from './Portfolio';
 import Spending from './Spending';
+import AsteroidGame from "./AsteroidGame";
 
 function App() {
   const [page, setPage] = useState("home");
@@ -20,21 +19,16 @@ function App() {
     <div className="App">
       {page === "home" && (
         <>
-          <ParentComponent 
-            balance={balance}
-            setBalance={setBalance}
-            accessorizeClicked={accessorizeClicked}
-            setAccessorizeClicked={setAccessorizeClicked}
-            dragClicked={dragClicked}
-            setDragClicked={setDragClicked}
-            icicleClicked={icicleClicked}
-            setIcicleClicked={setIcicleClicked}
-            timeTravelClicked={timeTravelClicked}
-            setTimeTravelClicked={setTimeTravelClicked}
-            asteroidPosition={asteroidPosition}
-            setAsteroidPosition={setAsteroidPosition}
+        <AsteroidGame
+          hatPowerUp={accessorizeClicked}
+          dragPowerUp={dragClicked}
+          iciclePowerUp={icicleClicked}
+          resetDrag={() => setDragClicked(false)}
+          resetIcicle={() => setIcicleClicked(false)}
+
+          asteroidPosition={asteroidPosition}
+          setAsteroidPosition={setAsteroidPosition}
           />
-          <Portfolio balance={balance} />
 
           <button onClick={() => setPage("spending")}>
             Go to Spending
