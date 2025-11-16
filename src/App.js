@@ -7,6 +7,7 @@ import Portfolio from './Portfolio';
 import Spending from './Spending';
 import Navbar from "./Navbar";
 import AsteroidGame from './AsteroidGame';
+import ParentComponent from "./ParentComponent";
 
 
 
@@ -19,27 +20,33 @@ function App() {
   const [dragClicked, setDragClicked] = useState(false);
   const [icicleClicked, setIcicleClicked] = useState(false);
   const [timeTravelClicked, setTimeTravelClicked] = useState(false);
+  const [asteroidPosition, setAsteroidPosition] = useState({ top: 0, left: 0 });
+  
 
   return (
     <div className="App">
     <Navbar setPage={setPage} />
 
-      {page === "home" && (
-        <>
-      
+    {page === "home" && (
+  <>
+    <div style={{ position: "absolute", top: 10, right: 10, fontSize: "18px" }}>
+      Balance: ${balance}
+    </div>
 
-<AsteroidGame
-        hatPowerUp={accessorizeClicked}
-        dragPowerUp={dragClicked}
-        iciclePowerUp={icicleClicked}
-        resetDrag={() => setDragClicked(false)}
-        resetIcicle={() => setIcicleClicked(false)}
-      />
+    <AsteroidGame
+      hatPowerUp={accessorizeClicked}
+      dragPowerUp={dragClicked}
+      iciclePowerUp={icicleClicked}
+      resetDrag={() => setDragClicked(false)}
+      resetIcicle={() => setIcicleClicked(false)}
+    />
+  </>
+)}
 
 
 
-        </>
-      )}
+
+
 
 
       {page === "spending" && (

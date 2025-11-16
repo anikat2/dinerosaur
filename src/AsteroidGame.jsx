@@ -75,7 +75,7 @@ useEffect(() => {
       const asteroidX = newLeft;
       const asteroidY = newTop;
 
-      const hitboxOffset = -10;
+      const hitboxOffset = 0;
 
       const isCollision =
         asteroidX < dinoX + dinoWidth - hitboxOffset &&
