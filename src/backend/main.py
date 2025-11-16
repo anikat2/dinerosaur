@@ -8,6 +8,7 @@ from concurrent.futures import ThreadPoolExecutor
 import yfinance as yf
 import firebase_admin
 from firebase_admin import credentials, db
+import json
 import numpy as np
 
 app = FastAPI()
@@ -92,7 +93,7 @@ def startup_event():
         firebase_admin.get_app()
         print("Firebase already initialized")
     except ValueError:
-        cred = credentials.Certificate("serviceAccountKey.json")
+        service_account_info = json.loads(os.environ["GOOGLE_APPLICATION_CREDENTIALS_JSON"])
         firebase_admin.initialize_app(cred, {
             'databaseURL': 'https://technica-842fc-default-rtdb.firebaseio.com/'
         })
