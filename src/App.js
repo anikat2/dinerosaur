@@ -1,9 +1,14 @@
+import TempEr from "./TempEr";
+
 import { useState } from 'react';
 import './App.css';
 import PowerUpsBack from './PowerUpsBack';
-import ParentComponent from './ParentComponent';
 import Portfolio from './Portfolio';
 import Spending from './Spending';
+import Navbar from "./Navbar";
+import AsteroidGame from './AsteroidGame';
+
+
 
 function App() {
   const [page, setPage] = useState("home");
@@ -17,27 +22,25 @@ function App() {
 
   return (
     <div className="App">
+    <Navbar setPage={setPage} />
+
       {page === "home" && (
         <>
-          <ParentComponent 
-            balance={balance}
-            setBalance={setBalance}
-            accessorizeClicked={accessorizeClicked}
-            setAccessorizeClicked={setAccessorizeClicked}
-            dragClicked={dragClicked}
-            setDragClicked={setDragClicked}
-            icicleClicked={icicleClicked}
-            setIcicleClicked={setIcicleClicked}
-            timeTravelClicked={timeTravelClicked}
-            setTimeTravelClicked={setTimeTravelClicked}
-          />
-          <Portfolio balance={balance} />
+      
 
-          <button onClick={() => setPage("spending")}>
-            Go to Spending
-          </button>
+<AsteroidGame
+        hatPowerUp={accessorizeClicked}
+        dragPowerUp={dragClicked}
+        iciclePowerUp={icicleClicked}
+        resetDrag={() => setDragClicked(false)}
+        resetIcicle={() => setIcicleClicked(false)}
+      />
+
+
+
         </>
       )}
+
 
       {page === "spending" && (
         <Spending
@@ -54,6 +57,7 @@ function App() {
           setTimeTravelClicked={setTimeTravelClicked}
         />
       )}
+      
     </div>
   );
 }

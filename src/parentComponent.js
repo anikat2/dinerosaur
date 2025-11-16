@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import PowerUpsBack from "./PowerUpsBack";
 import AsteroidGame from "./AsteroidGame";
+import TempEr from "./TempEr";
 
 export default function ParentComponent({
   balance,
@@ -14,6 +15,8 @@ export default function ParentComponent({
   timeTravelClicked,
   setTimeTravelClicked
 }) {
+  const [latestPercentChange, setLatestPercentChange] = useState(0);
+
   return (
     <div>
       <h1>PowerUps Dashboard</h1>
@@ -31,7 +34,12 @@ export default function ParentComponent({
         setTimeTravelClicked={setTimeTravelClicked}
       />
 
+      {/* Portfolio Chart */}
+      <TempEr onPercentChange={setLatestPercentChange} />
+
+      {/* Asteroid Game */}
       <AsteroidGame
+        latestPercentChange={latestPercentChange}
         hatPowerUp={accessorizeClicked}
         dragPowerUp={dragClicked}
         iciclePowerUp={icicleClicked}
