@@ -1,74 +1,114 @@
-/* Wrapper for title + content */
+/* ================================
+   PAGE LAYOUT
+================================ */
+
 .spending-page-wrapper {
-    display: flex;
-    flex-direction: column;   /* stack title and row */
-    align-items: center;      /* center horizontally */
-    margin-top: 20px;
-  }
-  
-  /* Title centered at top */
-  .spending-title {
-    font-size: 32px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  /* Row container for calculator + powerups */
-  .spending-page {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 30px;
-  }
-  
-  /* Calculator container */
-  .calculator-container {
-    position: relative;
-    width: 300px;
-    height: 400px;
-  }
-  
-  .calculator-img {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-  
-  .calculator-display {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 5px;
-    border-radius: 5px;
-    text-align: right;
-    font-size: 18px;
-  }
-  
-  /* Buttons overlayed on calculator */
-  .calc-btn {
-    position: absolute;
-    width: 46px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.5);
-    border: 1px solid #333;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    text-align: center;
-    line-height: 40px;
-  }
-  
-  /* Powerups container */
-  .powerups-container {
-    height: 400px;
-  }
-  
-  .powerups-img {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
+  text-align: center;
+  padding: 20px;
+}
+
+.spending-page {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+
+/* ================================
+   CALCULATOR
+================================ */
+
+.calculator-container {
+  position: relative;
+  width: 320px;
+}
+
+.calculator-img {
+  width: 100%;
+  display: block;
+}
+
+/* Display */
+.calculator-display {
+  position: absolute;
+  top: 35px;
+  left: 30px;
+  width: 260px;
+  height: 60px;
+  background: #ddd;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  border-radius: 4px;
+}
+
+/* Calculator Buttons */
+.calc-btn {
+  position: absolute;
+  width: 55px;
+  height: 45px;
+  background: #9bb3a8;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+
+/* ================================
+   POWER-UPS (one screenshot)
+================================ */
+
+.powerups-container {
+  position: relative;
+  width: 380px;  /* adjust depending on desired size */
+  max-width: 90vw;
+}
+
+.powerups-img {
+  width: 100%;
+  display: block;
+}
+
+/* Invisible hotspot buttons */
+.purchase-hotspot {
+  position: absolute;
+  width: 32%;     /* width of purchase button relative to screenshot */
+  height: 9%;     /* height of purchase button */
+  background: rgba(255, 0, 0, 0.4);
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+
+/* ================================
+   HOTSPOT POSITIONS — TUNE THESE
+================================ */
+
+/* Accessorize (top-left pink card) */
+.accessorize-btn {
+  top: 24%;      /* % from top of screenshot */
+  left: 13%;     /* % from left */
+}
+
+/* Drag (top-right pink card) */
+.drag-btn {
+  top: 24%;
+  left: 62%;
+}
+
+/* Icicle (bottom-left card) */
+.icicle-btn {
+  top: 63%;
+  left: 13%;
+}
+
+/* Time Travel (bottom-right card) */
+.time-btn {
+  top: 63%;
+  left: 62%;
+}

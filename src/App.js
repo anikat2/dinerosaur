@@ -14,6 +14,7 @@ function App() {
   const [dragClicked, setDragClicked] = useState(false);
   const [icicleClicked, setIcicleClicked] = useState(false);
   const [timeTravelClicked, setTimeTravelClicked] = useState(false);
+  const [asteroidPosition, setAsteroidPosition] = useState({ top: 0, left: 0 });
 
   return (
     <div className="App">
@@ -30,6 +31,8 @@ function App() {
             setIcicleClicked={setIcicleClicked}
             timeTravelClicked={timeTravelClicked}
             setTimeTravelClicked={setTimeTravelClicked}
+            asteroidPosition={asteroidPosition}
+            setAsteroidPosition={setAsteroidPosition}
           />
           <Portfolio balance={balance} />
 

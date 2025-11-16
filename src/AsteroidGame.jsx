@@ -1,14 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
-import dino from "/Users/rakshanadevalla/dinerosaur/src/assets/dinosaur-cartoon-dinosaur-cute-dinosaur-dinosaur-clipart-cat-dog-meter-snout-png-clipart-removebg-preview.png";
-import asteroid from "/Users/rakshanadevalla/dinerosaur/src/assets/pngtree-asteroid-icon-flat-style-png-image_1977257-removebg-preview.png";
-import hat from "/Users/rakshanadevalla/dinerosaur/src/assets/halloweenhatpowerup.png"; 
+import dino from "./assets/dinosaur-cartoon-dinosaur-cute-dinosaur-dinosaur-clipart-cat-dog-meter-snout-png-clipart-removebg-preview.png";
+import asteroid from "./assets/pngtree-asteroid-icon-flat-style-png-image_1977257-removebg-preview.png";
+import hat from "./assets/halloweenhatpowerup.png"; 
 
 function AsteroidGame({
   hatPowerUp,
   dragPowerUp,
   iciclePowerUp,
   resetDrag,
-  resetIcicle
+  resetIcicle,
+  asteroidPosition,
+  setAsteroidPosition
+  
 }) {
 
 
@@ -19,13 +22,26 @@ function AsteroidGame({
   const asteroidWidth = 120;
   const asteroidHeight = 120;
 
-  const [position, setPosition] = useState({ top: 0, left: 0 });
+  const position = asteroidPosition;
+  const setPosition = setAsteroidPosition;
   const [gameOver, setGameOver] = useState(false);
 
+/*
   // Set initial asteroid position at top-right
   useEffect(() => {
     const containerWidth = containerRef.current.offsetWidth;
     setPosition({ top: 0, left: containerWidth - asteroidWidth });
+  }, []);
+*/
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const containerWidth = containerRef.current.offsetWidth;
+    if (
+      (asteroidPosition == null) ||
+      (asteroidPosition.top === 0 && asteroidPosition.left === 0)
+    ) {
+      setPosition({ top: 0, left: containerWidth - asteroidWidth });
+    }
   }, []);
 
   const moveAsteroid = () => {

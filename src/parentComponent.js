@@ -12,7 +12,9 @@ export default function ParentComponent({
   icicleClicked,
   setIcicleClicked,
   timeTravelClicked,
-  setTimeTravelClicked
+  setTimeTravelClicked,
+  asteroidPosition,
+  setAsteroidPosition
 }) {
   return (
     <div>
@@ -37,6 +39,10 @@ export default function ParentComponent({
         iciclePowerUp={icicleClicked}
         resetDrag={() => setDragClicked(false)}
         resetIcicle={() => setIcicleClicked(false)}
+
+        asteroidPosition={asteroidPosition}
+        setAsteroidPosition={setAsteroidPosition}
+        
       />
     </div>
   );
