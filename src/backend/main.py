@@ -93,7 +93,7 @@ def startup_event():
         firebase_admin.get_app()
         print("Firebase already initialized")
     except ValueError:
-        service_account_info = json.loads(os.environ["GOOGLE_APPLICATION_CREDENTIALS_JSON"])
+        service_account_info = json.loads(os.environ["GOOGLE_CREDS"])
         firebase_admin.initialize_app(cred, {
             'databaseURL': 'https://technica-842fc-default-rtdb.firebaseio.com/'
         })
